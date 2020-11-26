@@ -69,13 +69,29 @@ def aes(request):
             key = bytearray.fromhex(listK[i])
             cifrar = AES.new(key, AES.MODE_ECB)
             timeI = time()
-            ct_bytes = cifrar.encrypt(mensaje)
+            ct_bytes = cifrar.encrypt(mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                                  mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                                  mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                                  mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                                  mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                                  mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                                  mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                                  mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje)
+
             timeF=time()
             listEBC_C.append(timeF-timeI)
             #print(ct_bytes.hex())
             #DESCIFRADO
             timeI = time()
-            descifrar= cifrar.decrypt(ct_bytes)
+            descifrar= cifrar.decrypt(ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+
+                                  ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+
+                                  ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+
+                                  ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+
+                                  ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+
+                                  ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+
+                                  ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+
+                                  ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes+ct_bytes)
+
             timeF = time()
             listEBC_D.append(timeF-timeI)
             #print(descifrar.hex())
@@ -108,14 +124,30 @@ def aes(request):
             iv = bytearray.fromhex(listIV[i])
             cifrar = AES.new(key, AES.MODE_CBC, iv)
             timeI = time()
-            ct = cifrar.encrypt(mensaje)
+            ct = cifrar.encrypt(mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                            mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                            mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                            mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                            mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                            mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                            mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+
+                            mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje+mensaje)
+
             timeF=time()
             listCBC_C.append(timeF-timeI)
             #print(ct.hex())
             #DESCIFRADO
             descifrar = AES.new(key, AES.MODE_CBC, iv)
             timeI=time()
-            desc = descifrar.decrypt(ct)
+            desc = descifrar.decrypt(ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+
+                                 ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+
+                                 ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+
+                                 ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+
+                                 ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+
+                                 ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+
+                                 ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+
+                                 ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct+ct)
+
             timeF=time()
             listCBC_D.append(timeF-timeI)
             #print(desc.hex())
@@ -142,7 +174,13 @@ def sha(request):
     for i in range(0, 50):
         for dato in datos:
             timeI = time()
-            h.update(bytearray.fromhex(dato))
+            h.update(bytearray.fromhex(dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato))
+
             timeF=time()
             listaTmpoSHA384.append(timeF-timeI)
             #print(h.hexdigest())
@@ -156,7 +194,13 @@ def sha(request):
     for i in range(0, 50):
         for dato in datos:
             timeI = time()
-            h.update(bytearray.fromhex(dato))
+            h.update(bytearray.fromhex(dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato))
+
             timeF=time()
             listaTmpoSHA512.append(timeF-timeI)
             #print(h.hexdigest())
@@ -170,7 +214,13 @@ def sha(request):
     for i in range(0, 50):
         for dato in datos:
             timeI = time()
-            h.update(bytearray.fromhex(dato))
+            h.update(bytearray.fromhex(dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato))
+
             timeF=time()
             listaTmpoSHA3_384.append(timeF-timeI)
             #print(h.hexdigest())
@@ -184,7 +234,13 @@ def sha(request):
     for i in range(0, 50):
         for dato in datos:
             timeI = time()
-            h.update(bytearray.fromhex(dato))
+            h.update(bytearray.fromhex(dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+
+                                   dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato+dato))
+
             timeF=time()
             listaTmpoSHA3_512.append(timeF-timeI)
             #print(h.hexdigest())
