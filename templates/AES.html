@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+
+{% block title %} AES {% endblock %}
+{% block title-content %}
+<div class="alert alert-primary mt-2" role="alert">
+    <h4 class="alert-heading">AES algorithm</h4>
+    <p>Test with the {{vector1}} and {{vector2 }} vectors.</p>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <div class="card bg-light mb-3">
+            <div class="card-header">EXECUTION TIMES</div>
+            <div class="card-body">
+                <h5 class="card-title">AES ECB - AES CBC</h5>
+                <p class="card-text">{{tmp_promAES}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <table class="table">
+            <thead class="bg-success" style="color: white;">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Decrypt ECB</th>
+                    <th scope="col">Encrypt ECB</th>
+                    <th scope="col">Decrypt CBC</th>
+                    <th scope="col">Encrypt CBC</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--
+                {% for item1, item2, item3, item4 in timelist %}
+                <tr>
+
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{item1}}</td>
+                    <td>{{item2}}</td>
+                    <td>{{item3}}</td>
+                    <td>{{item4}}</td>
+
+                </tr>
+                {% endfor %}
+                -->
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+
+{% block title %} SHA {% endblock %}
+{% block title-content %}
+<div class="alert alert-primary mt-2" role="alert">
+    <h4 class="alert-heading">SHA algorithm</h4>
+    <p>Test with the -- and -- vectors.</p>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <div class="card bg-light mb-3">
+            <div class="card-header">EXECUTION TIMES</div>
+            <div class="card-body">
+                <h5 class="card-title">SHA</h5>
+                <p class="card-text">{{tmp_promSHA}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
