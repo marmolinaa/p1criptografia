@@ -4,7 +4,7 @@
 {% block title-content %}
 <div class="alert alert-primary mt-2" role="alert">
     <h4 class="alert-heading">DSA algorithm</h4>
-    <p>Test with the -- and -- vectors.</p>
+    <p>Test with the {{listvector}} vectors.</p>
 </div>
 {% endblock %}
 
@@ -13,14 +13,42 @@
 <div class="row">
     <div class="col">
         <div class="card bg-light mb-3">
-            <div class="card-header">EXECUTION TIMES</div>
+            <div class="card-header">EXECUTION TIMES DSA</div>
             <div class="card-body">
-                <h5 class="card-title">DSA</h5>
-                <p class="card-text">{{tmp_promDSA}}</p>
+                <h5 class="card-title">Generate Signature with 60 records</h5>
+                <p class="card-text">DSA: {{ timeGenDSA }}</p>
+                <h5 class="card-title">Verify Signature with 60 records</h5>
+                <p class="card-text">DSA: {{ timeVerDSA }}</p>
             </div>
         </div>
     </div>
 </div>
 
+<div class="row">
+    <div class="col">
+        <table class="table">
+            <thead class="bg-success" style="color: white;">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">timeGenDSA</th>
+                    <th scope="col">timeVerDSA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- -->
+                {% for item1, item2 in timelist %}
+                <tr>
+
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{item1}}</td>
+                    <td>{{item2}}</td>
+
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+</div>
 
 {% endblock %}

@@ -4,7 +4,7 @@
 {% block title-content %}
 <div class="alert alert-primary mt-2" role="alert">
     <h4 class="alert-heading">RCA algorithm</h4>
-    <p>Test with the -- and -- vectors.</p>
+    <p>Test with the {{listvector}} vectors.</p>
 </div>
 {% endblock %}
 
@@ -13,12 +13,55 @@
 <div class="row">
     <div class="col">
         <div class="card bg-light mb-3">
-            <div class="card-header">EXECUTION TIMES</div>
+            <div class="card-header">EXECUTION TIMES RCA</div>
             <div class="card-body">
-                <h5 class="card-title">RCA</h5>
-                <p class="card-text">{{tmp_promRSA}}</p>
+                <h5 class="card-title">Generate Signature with 60 records</h5>
+                <p class="card-text">RSA_OAEP: {{ timeGenRSA_OAEP }}</p>
+                <p class="card-text">RSA_PSS: {{ timeGenRSA_PSS }}</p>
+                <h5 class="card-title">Verify Signature with 60 records</h5>
+                <p class="card-text">RSA_OAEP: {{ timeVerRSA_OAEP }}</p>
+                <p class="card-text">RSA_PSS: {{ timeVerRSA_PSS }}</p>
+                <h5 class="card-title">Encryption with 60 records</h5>
+                <p class="card-text">Encrypt RSA_OAEP : {{ encrypTime }}</p>
+                <h5 class="card-title">Decryption with 60 records</h5>
+                <p class="card-text">Decrypt RSA_OAEP: {{ decrypTime }}</p>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <table class="table">
+            <thead class="bg-success" style="color: white;">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">timeGenRSA_OAEP</th>
+                    <th scope="col">timeVerRSA_OAEP</th>
+                    <th scope="col">timeGenRSA_PSS</th>
+                    <th scope="col">timeVerRSA_PSS</th>
+                    <th scope="col">Encrypt RSA_OAEP</th>
+                    <th scope="col">Decrypt RSA_OAEP</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- -->
+                {% for item1, item2, item3, item4, item5, item6 in timelist %}
+                <tr>
+
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{item1}}</td>
+                    <td>{{item2}}</td>
+                    <td>{{item3}}</td>
+                    <td>{{item4}}</td>
+                    <td>{{item5}}</td>
+                    <td>{{item6}}</td>
+
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
     </div>
 </div>
 
