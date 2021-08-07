@@ -1,179 +1,19 @@
 {% extends "index.html" %}
 
-{% block title %} ESCRITORIO {% endblock %}
+{% block title %} Data mining {% endblock %}
 {% block title-content %}
 <div class="alert alert-primary mt-2" role="alert">
-    <h4 class="alert-heading">Comparative All</h4>
-    <p>Comparative All</p>
+    <h4 class="alert-heading">Data mining</h4>
 </div>
 {% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-6">
-        <h4 class="alert-heading">Encryption Algorithms</h4>
-        <table class="table">
-            <thead class="bg-success" style="color: white;">
-                <tr>
-                    <th scope="col">Algorithm</th>
-                    <th scope="col">Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>AES EBC</td>
-                    <td>{{listEBC_C}}</td>
-                </tr>
-                <tr>
-                    <td>AES CBC</td>
-                    <td>{{listCBC_C}}</td>
-                </tr>
-                <tr>
-                    <td>RSA OAEP</td>
-                    <td>{{encrypTime}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-6">
-        <h4 class="alert-heading">Decryption Algorithms</h4>
-        <table class="table">
-            <thead class="bg-success" style="color: white;">
-                <tr>
-                    <th scope="col">Algorithm</th>
-                    <th scope="col">Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>AES EBC</td>
-                    <td>{{listEBC_D}}</td>
-                </tr>
-                <tr>
-                    <td>AES CBC</td>
-                    <td>{{listCBC_D}}</td>
-                </tr>
-                <tr>
-                    <td>RSA OAEP</td>
-                    <td>{{decrypTime}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="row">
-    <div class="col-6">
-        <h4 class="alert-heading">Hash 384 Algorithms</h4>
-        <table class="table">
-            <thead class="bg-success" style="color: white;">
-                <tr>
-                    <th scope="col">Algorithm</th>
-                    <th scope="col">Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>SHA 384</td>
-                    <td>{{listaTmpoSHA384}}</td>
-                </tr>
-                <tr>
-                    <td>SHA3 384</td>
-                    <td>{{listaTmpoSHA3_384}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-6">
-        <h4 class="alert-heading">Hash 512 Algorithms</h4>
-        <table class="table">
-            <thead class="bg-success" style="color: white;">
-                <tr>
-                    <th scope="col">Algorithm</th>
-                    <th scope="col">Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>SHA 512</td>
-                    <td>{{listaTmpoSHA512}}</td>
-                </tr>
-                <tr>
-                    <td>SHA3 512</td>
-                    <td>{{listaTmpoSHA3_512}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="row">
-    <div class="col-6">
-        <h4 class="alert-heading">Generation signature algorithms</h4>
-        <table class="table">
-            <thead class="bg-success" style="color: white;">
-                <tr>
-                    <th scope="col">Algorithm</th>
-                    <th scope="col">Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>RSA OAEP</td>
-                    <td>{{timeGenRSA_OAEP}}</td>
-                </tr>
-                <tr>
-                    <td>RSA PSS</td>
-                    <td>{{timeGenRSA_PSS}}</td>
-                </tr>
-                <tr>
-                    <td>DSA</td>
-                    <td>{{timeGenDSA}}</td>
-                </tr>
-                <tr>
-                    <td>ECDSA P521</td>
-                    <td>{{timeGenECC_521}}</td>
-                </tr>
-                <tr>
-                    <td>ECDSA P384</td>
-                    <td>{{timeGenECC_384}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-6">
-        <h4 class="alert-heading">Verification signature algorithms</h4>
-        <table class="table">
-            <thead class="bg-success" style="color: white;">
-                <tr>
-                    <th scope="col">Algorithm</th>
-                    <th scope="col">Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>RSA OAEP</td>
-                    <td>{{timeVerRSA_OAEP}}</td>
-                </tr>
-                <tr>
-                    <td>RSA PSS</td>
-                    <td>{{timeVerRSA_PSS}}</td>
-                </tr>
-                <tr>
-                    <td>DSA</td>
-                    <td>{{timeVerDSA}}</td>
-                </tr>
-                <tr>
-                    <td>ECDSA P521</td>
-                    <td>{{timeVerECC_521}}</td>
-                </tr>
-                <tr>
-                    <td>ECDSA P384</td>
-                    <td>{{timeVerECC_384}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
 
+<div class="row">
+    <div class="alert alert-primary mt-2" role="alert">
+        <h4 class="alert-heading">Data mining</h4>
+    </div>
+</div>
 
 
 {% endblock %}

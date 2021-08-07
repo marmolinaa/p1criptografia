@@ -1,59 +1,17 @@
 {% extends "index.html" %}
 
-{% block title %} AES {% endblock %}
+{% block title %} Algorithm {% endblock %}
 {% block title-content %}
 <div class="alert alert-primary mt-2" role="alert">
-    <h4 class="alert-heading">AES algorithm</h4>
-    <p>Test with the {{listvector}} vectors.</p>
+    <h4 class="alert-heading">Algorithm</h4>
 </div>
 {% endblock %}
 
 {% block content %}
 
 <div class="row">
-    <div class="col">
-        <div class="card bg-light mb-3">
-            <div class="card-header">EXECUTION TIMES AES</div>
-            <div class="card-body">
-                <h5 class="card-title">Encryption time with 5100 records</h5>
-                <p class="card-text">EBC: {{ listEBC_C }}</p>
-                <p class="card-text">CBC: {{ listCBC_C }}</p>
-                <h5 class="card-title">Decryption time with 5100 records</h5>
-                <p class="card-text">EBC: {{ listEBC_D }}</p>
-                <p class="card-text">CBC: {{ listCBC_D }}</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col">
-        <table class="table">
-            <thead class="bg-success" style="color: white;">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Encrypt ECB</th>
-                    <th scope="col">Decrypt ECB</th>
-                    <th scope="col">Encrypt CBC</th>
-                    <th scope="col">Decrypt CBC</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- -->
-                {% for item1, item2, item3, item4 in timelist %}
-                <tr>
-
-                    <th scope="row">{{ forloop.counter }}</th>
-                    <td>{{item1}}</td>
-                    <td>{{item2}}</td>
-                    <td>{{item3}}</td>
-                    <td>{{item4}}</td>
-
-                </tr>
-                {% endfor %}
-                
-            </tbody>
-        </table>
+    <div class="alert alert-primary mt-2" role="alert">
+        <h4 class="alert-heading">Algorithm</h4>
     </div>
 </div>
 

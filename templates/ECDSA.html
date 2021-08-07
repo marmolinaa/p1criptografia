@@ -1,60 +1,19 @@
 {% extends "index.html" %}
 
-{% block title %} ECDSA {% endblock %}
+{% block title %} Algorithm {% endblock %}
 {% block title-content %}
 <div class="alert alert-primary mt-2" role="alert">
-    <h4 class="alert-heading">ECDSA algorithm</h4>
-    <p>Test with the {{listvector}} vectors.</p>
+    <h4 class="alert-heading">Algorithm</h4>
 </div>
 {% endblock %}
 
 {% block content %}
 
 <div class="row">
-    <div class="col">
-        <div class="card bg-light mb-3">
-            <div class="card-header">EXECUTION TIMES ECDSA</div>
-            <div class="card-body">
-                <h5 class="card-title">Generate Signature with 60 records</h5>
-                <p class="card-text">ECC_521: {{ timeGenECC_521 }}</p>
-                <p class="card-text">ECC_384: {{ timeGenECC_384 }}</p>
-                <h5 class="card-title">Verify Signature with 60 records</h5>
-                <p class="card-text">ECC_521: {{ timeVerECC_521 }}</p>
-                <p class="card-text">ECC_384: {{ timeVerECC_384 }}</p>
-            </div>
-        </div>
+    <div class="alert alert-primary mt-2" role="alert">
+        <h4 class="alert-heading">Algorithm</h4>
     </div>
 </div>
 
-<div class="row">
-    <div class="col">
-        <table class="table">
-            <thead class="bg-success" style="color: white;">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">timeGenECC_521</th>
-                    <th scope="col">timeVerECC_521</th>
-                    <th scope="col">timeGenECC_384</th>
-                    <th scope="col">timeVerECC_384</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- -->
-                {% for item1, item2, item3, item4 in timelist %}
-                <tr>
-
-                    <th scope="row">{{ forloop.counter }}</th>
-                    <td>{{item1}}</td>
-                    <td>{{item2}}</td>
-                    <td>{{item3}}</td>
-                    <td>{{item4}}</td>
-
-                </tr>
-                {% endfor %}
-                
-            </tbody>
-        </table>
-    </div>
-</div>
 
 {% endblock %}
