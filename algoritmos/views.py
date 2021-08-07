@@ -31,7 +31,7 @@ import os
 
 
 
-def index(request):
+def GUI(request):
     BASE_DIR = Path(__file__).resolve().parent.parent
     x = os.path.join(BASE_DIR, 'files')
 
@@ -72,9 +72,9 @@ def index(request):
         'listvector': 'listvector',
         'timelist':'timelist'
     }
-    return render(request, 'escritorio.html', context)
+    return render(request, 'GUI.html', context)
 
-def aes(request):
+def EDA(request):
     BASE_DIR = Path(__file__).resolve().parent.parent
     x = os.path.join(BASE_DIR, 'files')
 
@@ -115,9 +115,9 @@ def aes(request):
         'listvector': 'listvector',
         'timelist':'timelist'
     }
-    return render(request, 'AES.html', context)
+    return render(request, 'EDA.html', context)
 
-def sha(request):
+
     BASE_DIR = Path(__file__).resolve().parent.parent
     x = os.path.join(BASE_DIR, 'files')
 
@@ -161,7 +161,7 @@ def sha(request):
 
     return render(request, 'SHA.html', context)
 
-def rca(request):
+def PCA(request):
     BASE_DIR = Path(__file__).resolve().parent.parent
     x = os.path.join(BASE_DIR, 'files')
 
@@ -202,9 +202,9 @@ def rca(request):
         'listvector': 'listvector',
         'timelist':'timelist'
     }
-    return render(request, 'RCA.html', context)
+    return render(request, 'PCA.html', context)
 
-def dsa(request):
+def Clustering(request):
     BASE_DIR = Path(__file__).resolve().parent.parent
     x = os.path.join(BASE_DIR, 'files')
 
@@ -245,9 +245,9 @@ def dsa(request):
         'listvector': 'listvector',
         'timelist':'timelist'
     }
-    return render(request, 'DSA.html', context)
+    return render(request, 'Clustering.html', context)
 
-def ecdsa(request):
+def Regresion(request):
     BASE_DIR = Path(__file__).resolve().parent.parent
     x = os.path.join(BASE_DIR, 'files')
 
@@ -289,4 +289,4 @@ def ecdsa(request):
         'timelist':'timelist'
     }
 
-    return render(request, 'ECDSA.html', context)
+    return render(request, 'Regresion.html', context)
