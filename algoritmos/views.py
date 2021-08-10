@@ -28,45 +28,8 @@ import json
 
 
 def GUI(request):
-    BASE_DIR = Path(__file__).resolve().parent.parent
-    x = os.path.join(BASE_DIR, 'files')
-
-    listd=[]#Lista del parametro d
-    listQX=[]#Lista del punto X
-    listQY=[]#Lista del punto Y
-    listMsg=[]#Lista de los mensajes
-    listR=[]#Lista de firmas R
-    listS=[]#Lista de firmas S
-
-    archivo = open(x+"\ECC_P521_GEN.txt","r")
-    
-    for linea in archivo.readlines():
-        if "Qx = " in linea:#Lee el punto X del archivo
-            fQx = linea.lstrip("Qx = ")
-            listQX.append(fQx.rstrip("\n"))
-        elif "Qy = " in linea:#Lee el punto Y del archivo
-            fQy = linea.lstrip("Qy = ")
-            listQY.append(fQy.rstrip("\n"))
-        elif "Msg = " in linea:#Lee los mensajes del archivo
-            m = linea.lstrip("Msg = ")
-            listMsg.append(m.rstrip("\n"))
-        elif "R = " in linea:#Lee la firma R del archivo
-            fr = linea.lstrip("R = ")
-            listR.append(fr.rstrip("\n"))
-        elif "S = " in linea:#Lee la firma s del archivo
-            fs = linea.lstrip("S = ")
-            listS.append(fs.rstrip("\n"))
-        elif "d = " in linea:#Lee el parametro Y del archivo
-            fd = linea.lstrip("d = ")
-            listd.append(fd.rstrip("\n"))
-    archivo.close()
     context = {
-        'timeGenECC_521': 'timeGenECC_521',
-        'timeVerECC_521': 'timeVerECC_521',
-        'timeGenECC_384': 'timeGenECC_384',
-        'timeVerECC_384': 'timeVerECC_384',
-        'listvector': 'listvector',
-        'timelist':'timelist'
+        'context': 'context'
     }
     return render(request, 'GUI.html', context)
 
@@ -118,7 +81,6 @@ def EDAnumericas(request):
     context = {
         'CaracNumericas' : CaracNumericas
     }
-    plt.switch_backend('agg')
     return render(request, 'EDAnumericas.html', context)
 
 def EDAnominales(request):
