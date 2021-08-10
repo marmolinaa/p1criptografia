@@ -4,9 +4,27 @@
 {% block title-content %}
 <div class="alert alert-primary mt-2" role="alert">
     <h4 class="alert-heading">Clustering Particional</h4>
+    <a class="py-2 d-none d-md-inline-block" style="color: black;" href="{% url 'ClusteringKmeans' %}">
+        Algoritmo: k-means
+    </a>
+    <h6 class="alert-heading">Se utiliza una matriz de correlaciones con el propósito de definir un grupo de características significativas:</h6>
+    {% for col in keysClus %}
+    <a class="py-2 d-none d-md-inline-block" style="color: black;" href="{% url 'ClusteringMat' col %}">
+        {{col}}
+    </a>
+    {% endfor %}
 </div>
 {% endblock %}
 
 {% block content %}
-
+<div class="container-fluid">
+    <div class="row" style="display:inline;">
+        <h4 class="alert-heading">Primeros 10 registros de la tabla</h4>
+        {{ DatosClusHTMLtop | safe }}
+    </div>
+    <div class="row">
+        <h4 class="alert-heading">Matriz de correlaciones</h4>
+        <img src="{{ correlaciones |safe }}" class="img-fluid" alt="Responsive image">
+    </div>
+</div>
 {% endblock %}

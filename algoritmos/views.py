@@ -9,6 +9,9 @@ import seaborn as sns # Para vasialización de datos
 
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+from sklearn.metrics import pairwise_distances_argmin_min
+from kneed import KneeLocator
 
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -148,7 +151,6 @@ def PCAf(request):
     DatosPCAtop = dataPCA.head(10)
     DatosPCAHTMLtop = DatosPCAtop.to_html()
     DatosPCADic = dataPCA.to_dict()
-
     keysPCA = list(DatosPCADic.keys())
 
     context = {
@@ -216,42 +218,120 @@ def PCAestandar(request, key):
 def Clustering(request):
     BASE_DIR = Path(__file__).resolve().parent.parent
     x = os.path.join(BASE_DIR, 'files')
-    DatosVac = pd.read_csv(x+'/country_vaccinations.csv')
-    DatosVac.hist(figsize=(14,14), xrot=45)
+    dataClus = pd.read_csv(x+'/Hipoteca.csv')
 
-    DatosVacHTML = DatosVac.to_html()
+    DatosClusTop = dataClus.head(10)
+    DatosClusHTMLtop = DatosClusTop.to_html()
+    DatosClusDic = dataClus.to_dict()
+    keysClus = list(DatosClusDic.keys())
+
+    plt.figure(figsize=(14,7))
+    sns.heatmap(dataClus.corr(), cmap='RdBu_r', annot=True)
+    
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    correlaciones = 'data:image/png;base64,' + urllib.parse.quote(string)
+
+    context = {
+        'DatosClusHTMLtop': DatosClusHTMLtop,
+        'keysClus': keysClus,
+        'correlaciones':correlaciones
+    }
+    return render(request, 'Clustering.html', context)
+
+def ClusteringMat(request, key):
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    x = os.path.join(BASE_DIR, 'files')
+    dataClus = pd.read_csv(x+'/Hipoteca.csv')
+
+    sns.pairplot(dataClus, hue=key)
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    matClustering = 'data:image/png;base64,' + urllib.parse.quote(string)
+
+    context = {
+        'matClustering': matClustering
+    }
+    return render(request, 'ClusteringMat.html', context)
+
+def ClusteringKmeans(request):
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    x = os.path.join(BASE_DIR, 'files')
+    dataClus = pd.read_csv(x+'/Hipoteca.csv')
+
+    #Definición de k clusters para K-means
+    #Se utiliza random_state para inicializar el generador interno de números aleatorios
+    SSE = []
+    for i in range(2, 12):
+        km = KMeans(n_clusters=i, random_state=0)
+        km.fit(dataClus)
+        SSE.append(km.inertia_)
+
+    #Se grafica SSE en función de k
+    plt.figure(figsize=(10, 7))
+    plt.plot(range(2, 12), SSE, marker='o')
+    plt.xlabel('Cantidad de clusters *k*')
+    plt.ylabel('SSE')
+    plt.title('Elbow Method')
 
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
     buf.seek(0)
     string = base64.b64encode(buf.read())
-    image = 'data:image/png;base64,' + urllib.parse.quote(string)
+    kmeans = 'data:image/png;base64,' + urllib.parse.quote(string)
+
+    kl = KneeLocator(range(2, 12), SSE, curve="convex", direction="decreasing")
+    codo = kl.elbow
 
     context = {
-        'DatosVac': DatosVac,
-        'DatosVacHTML': DatosVacHTML,
-        'figure' : image
+        'kmeans': kmeans,
+        'codo': codo
     }
-    return render(request, 'Clustering.html', context)
+    return render(request, 'ClusteringKmeans.html', context)
 
 def Regresion(request):
     BASE_DIR = Path(__file__).resolve().parent.parent
     x = os.path.join(BASE_DIR, 'files')
-    DatosVac = pd.read_csv(x+'/country_vaccinations.csv')
-    DatosVac.hist(figsize=(14,14), xrot=45)
+    dataRegresion = pd.read_csv(x+'/WDBCOriginal.csv')
 
-    DatosVacHTML = DatosVac.to_html()
+    DatosRegTop = dataRegresion.head(10)
+    DatosRegHTMLtop = DatosRegTop.to_html()
+    DatosRegDic = dataRegresion.to_dict()
+    keysReg = list(DatosRegDic.keys())
 
+    plt.figure(figsize=(14,7))
+    sns.heatmap(dataRegresion.corr(), cmap='RdBu_r', annot=True)
+    
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
     buf.seek(0)
     string = base64.b64encode(buf.read())
-    image = 'data:image/png;base64,' + urllib.parse.quote(string)
+    correlaciones = 'data:image/png;base64,' + urllib.parse.quote(string)
 
     context = {
-        'DatosVac': DatosVac,
-        'DatosVacHTML': DatosVacHTML,
-        'figure' : image
+        'DatosRegHTMLtop': DatosRegHTMLtop,
+        'keysReg': keysReg,
+        'correlaciones':correlaciones
     }
-
     return render(request, 'Regresion.html', context)
+
+def RegresionMat(request, key):
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    x = os.path.join(BASE_DIR, 'files')
+    dataRegresion = pd.read_csv(x+'/WDBCOriginal.csv')
+
+    sns.pairplot(dataRegresion, hue=key)
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    matRegresion = 'data:image/png;base64,' + urllib.parse.quote(string)
+
+    context = {
+        'matRegresion': matRegresion
+    }
+    return render(request, 'RegresionMat.html', context)

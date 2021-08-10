@@ -13,5 +13,9 @@ urlpatterns = [
     path('PCA/estandar/<key>', views.PCAestandar, name='PCAestandar'),
 
     path('Clustering/', views.Clustering, name='Clustering'),
+    path('Clustering/matriz/<key>', views.ClusteringMat, name='ClusteringMat'),
+    path('Clustering/Kmeans', views.ClusteringKmeans, name='ClusteringKmeans'),
+
     path('Regresion/', views.Regresion, name='Regresion'),
+    path('Regresion/matriz/<key>', views.RegresionMat, name='RegresionMat')
 ]
