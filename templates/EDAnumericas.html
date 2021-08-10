@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block title %}EDAnumericas{% endblock %}
+{% block title-content %}
+<div class="alert alert-primary mt-2" role="alert">
+    <h4 class="alert-heading">Detección de valores atípicos </h4>
+    <h4 class="alert-heading">Características numéricas </h4>
+    <a class="py-2 d-none d-md-inline-block" style="color: black;" href="{% url 'EDA' %}">
+        REGRESAR
+    </a>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <img src="{{ CaracNumericas | safe }}" style="height: 1000px; width: 1000px;">
+</div>
+
+
+{% endblock %}

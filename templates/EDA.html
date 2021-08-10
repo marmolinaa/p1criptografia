@@ -1,19 +1,76 @@
 {% extends "index.html" %}
 
-{% block title %} Algorithm EDA{% endblock %}
+{% block title %}EDA{% endblock %}
 {% block title-content %}
 <div class="alert alert-primary mt-2" role="alert">
-    <h4 class="alert-heading">Algorithm</h4>
+    <h4 class="alert-heading">Análisis Exploratorio de Datos EDA</h4>
+    <a class="py-2 d-none d-md-inline-block" style="color: black;" href="{% url 'EDAnumericas' %}">
+        Características numéricas
+    </a>
+    <br>
+    <a class="py-2 d-none d-md-inline-block" style="color: black;" href="{% url 'EDAnominales' %}">
+        Características nominales
+    </a>
 </div>
 {% endblock %}
 
 {% block content %}
-
-<div class="row">
-    <div class="alert alert-primary mt-2" role="alert">
-        <h4 class="alert-heading">Algorithm</h4>
+<div class="container-fluid">
+    <div class="row" style="display:inline;">
+        <h4 class="alert-heading">Primeros 10 registros de la tabla</h4>
+        {{ headTenHTML | safe }}
     </div>
-</div>
+    <div class="row">
+        <h4 class="alert-heading">Tipo de variables y datos faltantes</h4>
+    </div>
+    <div class="row">
 
+        <div class="col-4">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Variable</th>
+                        <th scope="col">Faltantes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, value in datosFaltantesDic.items %}
+                    <tr>
+                        <th scope="row">{{key}}</th>
+                        <td>{{value}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Variable</th>
+                        <th scope="col">Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, value in datatypeDic.items %}
+                    <tr>
+                        <th scope="row">{{key}}</th>
+                        <td>{{value}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" style="display:inline;">
+        <h4 class="alert-heading">Relaciones entre variables</h4>
+        {{ dataCorrHTML | safe }}
+    </div>
+
+    <div class="row">
+        <img src="{{ correlaciones |safe }}" class="img-fluid" alt="Responsive image">
+    </div>
+
+</div>
 
 {% endblock %}
