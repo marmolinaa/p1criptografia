@@ -7,6 +7,9 @@ import numpy as np # Para crear vectores matrices de n dimensiones
 import matplotlib.pyplot as plt # Para genenar gráficos
 import seaborn as sns # Para vasialización de datos
 
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
@@ -122,7 +125,7 @@ def EDAnominales(request):
 
     # Características nominales
     for col in DatosVac.select_dtypes(include='object'):
-        if DatosVac[col].nunique() < 26:
+        if DatosVac[col].nunique() < 10:
             sns.countplot(y=col, data=DatosVac)
     
     buf = io.BytesIO()
@@ -137,26 +140,78 @@ def EDAnominales(request):
     plt.switch_backend('agg')
     return render(request, 'EDAnominales.html', context)   
 
-def PCA(request):
+def PCAf(request):
     BASE_DIR = Path(__file__).resolve().parent.parent
     x = os.path.join(BASE_DIR, 'files')
-    DatosVac = pd.read_csv(x+'/country_vaccinations.csv')
-    DatosVac.hist(figsize=(14,14), xrot=45)
+    dataPCA = pd.read_csv(x+'/Hipoteca.csv')
 
-    DatosVacHTML = DatosVac.to_html()
+    DatosPCAtop = dataPCA.head(10)
+    DatosPCAHTMLtop = DatosPCAtop.to_html()
+    DatosPCADic = dataPCA.to_dict()
+
+    keysPCA = list(DatosPCADic.keys())
+
+    context = {
+        'DatosPCAHTMLtop': DatosPCAHTMLtop,
+        'keysPCA': keysPCA
+    }
+    return render(request, 'PCA.html', context)
+
+def PCAestandar(request, key):
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    x = os.path.join(BASE_DIR, 'files')
+    dataPCA = pd.read_csv(x+'/Hipoteca.csv')
+
+    normalizar = StandardScaler()                       # Se instancia el objeto StandardScaler 
+    MdataPCA = dataPCA.drop([key], axis=1)      # Se quita la variable dependiente "Y"
+    normalizar.fit(MdataPCA)                           # Se calcula la media y desviación para cada dimensión
+    MNormalizada = normalizar.transform(MdataPCA)
+
+    matNor = pd.DataFrame(MNormalizada, columns=MdataPCA.columns)
+    matNotTop = matNor.head(10)
+    matNorHTML = matNotTop.to_html()
+
+    Componentes = PCA(n_components=9)
+    Componentes.fit(MNormalizada)
+    X_Comp = Componentes.transform(MNormalizada)
+
+    diensiones = pd.DataFrame(X_Comp)
+    diensionesTop = diensiones.head(10)
+    diensionesHTML = diensionesTop.to_html()
+
+    vectores = Componentes.components_
+    vectoresList = vectores.tolist()
+
+    Varianza = Componentes.explained_variance_ratio_
+
+    plt.plot(np.cumsum(Componentes.explained_variance_ratio_))
+    plt.xlabel('Numero de componentes')
+    plt.ylabel('Varianza acumulada')
+    plt.grid()
 
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
     buf.seek(0)
     string = base64.b64encode(buf.read())
-    image = 'data:image/png;base64,' + urllib.parse.quote(string)
+    fig = 'data:image/png;base64,' + urllib.parse.quote(string)
+
+    relUno = pd.DataFrame(abs(Componentes.components_))
+    relUnoHTML = relUno.to_html()
+    CargasComponentes = pd.DataFrame(abs(Componentes.components_), columns=MdataPCA.columns)
+    CargasComponentesHTML = CargasComponentes.to_html()
 
     context = {
-        'DatosVac': DatosVac,
-        'DatosVacHTML': DatosVacHTML,
-        'figure' : image
+        'MNormalizada': MNormalizada.shape,
+        'matNorHTML':matNorHTML,
+        'diensionesHTML': diensionesHTML,
+        'vectoresList': vectoresList,
+        'Eigenvalues': Varianza,
+        'Acumulada': sum(Varianza[0:5]),
+        'fig': fig,
+        'relUnoHTML':relUnoHTML,
+        'CargasComponentesHTML': CargasComponentesHTML
     }
-    return render(request, 'PCA.html', context)
+    return render(request, 'PCAestandar.html', context)
 
 def Clustering(request):
     BASE_DIR = Path(__file__).resolve().parent.parent

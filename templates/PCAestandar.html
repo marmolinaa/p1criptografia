@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+
+{% block title %}PCAestandar{% endblock %}
+{% block title-content %}
+<div class="alert alert-primary mt-2" role="alert">
+    <h4 class="alert-heading">Se hace una estandarización de los datos PCA</h4>
+    <a class="py-2 d-none d-md-inline-block" style="color: black;" href="{% url 'PCA' %}">
+        REGRESAR
+    </a>
+</div>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <h4 class="alert-heading">{{ MNormalizada }} Top10 </h4>
+    <div class="row" style="display:inline;">
+        {{ matNorHTML | safe }}
+    </div>
+    <h4 class="alert-heading">Se convierte los datos con las nuevas dimensiones Top10</h4>
+    <div class="row" style="display:inline;">
+        {{ diensionesHTML | safe }}
+    </div>
+    <h4 class="alert-heading">Vectores</h4>
+    <div class="row" style="display:inline;">
+        {{vectoresList}}
+    </div>
+    <h6 class="alert-heading">Eigenvalues: {{Eigenvalues}}</h6><br>
+    <h6 class="alert-heading">Varianza Acumulada: {{Acumulada}}</h6>
+    <div class="row">
+        <img src="{{ fig |safe }}" class="img-fluid" alt="Responsive image">
+    </div>
+    <h6 class="alert-heading">Se examina la proporción de relevancias --cargas--</h6>
+    <div class="row" style="display:inline;">
+        {{ relUnoHTML | safe }}
+    </div>
+    <div class="row" style="display:inline;">
+        <h6 class="alert-heading">Cargas absolutas de Componentes</h6>
+        {{ CargasComponentesHTML | safe }}
+    </div>
+
+</div>
+
+{% endblock %}

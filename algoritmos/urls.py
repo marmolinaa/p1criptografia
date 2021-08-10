@@ -9,7 +9,9 @@ urlpatterns = [
     path('EDA/numericas', views.EDAnumericas, name='EDAnumericas'),
     path('EDA/nominales', views.EDAnominales, name='EDAnominales'),
     
-    path('PCA/', views.PCA, name='PCA'),
+    path('PCA/', views.PCAf, name='PCA'),
+    path('PCA/estandar/<key>', views.PCAestandar, name='PCAestandar'),
+
     path('Clustering/', views.Clustering, name='Clustering'),
     path('Regresion/', views.Regresion, name='Regresion'),
 ]
