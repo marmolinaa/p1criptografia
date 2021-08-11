@@ -13,6 +13,12 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import pairwise_distances_argmin_min
 from kneed import KneeLocator
 
+from sklearn import linear_model
+from sklearn import model_selection
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
+
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
@@ -274,10 +280,26 @@ def Regresion(request):
     string = base64.b64encode(buf.read())
     correlaciones = 'data:image/png;base64,' + urllib.parse.quote(string)
 
+    dataRegresioJson = DatosRegTop.to_json()
+    dataRegresionDic = json.loads(dataRegresioJson)
+    DTexture = dataRegresionDic['Texture']
+    DArea = dataRegresionDic['Area']
+    DSmoothness = dataRegresionDic['Smoothness']
+    DCompactness = dataRegresionDic['Compactness']
+    DSymmetry = dataRegresionDic['Symmetry']
+    DFractalDimension = dataRegresionDic['FractalDimension']
+
     context = {
         'DatosRegHTMLtop': DatosRegHTMLtop,
         'keysReg': keysReg,
-        'correlaciones':correlaciones
+        'correlaciones':correlaciones,
+
+        'DTexture':DTexture,
+        'DArea':DArea,
+        'DSmoothness':DSmoothness,
+        'DCompactness':DCompactness,
+        'DSymmetry':DSymmetry,
+        'DFractalDimension':DFractalDimension
     }
     return render(request, 'Regresion.html', context)
 

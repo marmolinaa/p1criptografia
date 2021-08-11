@@ -4,7 +4,8 @@
 {% block title-content %}
 <div class="alert alert-primary mt-2" role="alert">
     <h4 class="alert-heading">Regresión Logística</h4>
-    <h6 class="alert-heading">Se utiliza una matriz de correlaciones con el propósito de definir un grupo de características significativas:</h6>
+    <h6 class="alert-heading">Se utiliza una matriz de correlaciones con el propósito de definir un grupo de
+        características significativas:</h6>
     {% for col in keysReg %}
     <a class="py-2 d-none d-md-inline-block" style="color: black;" href="{% url 'RegresionMat' col %}">
         {{col}}
@@ -23,5 +24,67 @@
         <h4 class="alert-heading">Matriz de correlaciones</h4>
         <img src="{{ correlaciones |safe }}" class="img-fluid" alt="Responsive image">
     </div>
+    <div class="row">
+        <h4 class="alert-heading">Modelo de clasificación</h4>
+        <h4 class="alert-heading">𝑎+𝑏𝑋 = 12.025 – 0.19Texture – 0.01Area – 0.70Smoothness – 2.59Compactness –
+            1.02Symmetry – 0.25FractalDimension</h4>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <select class="custom-select" id="DTexture">
+                <option value=0 selected>Texture</option>
+                {% for key, val in DTexture.items %}
+                <option value={{val}}>{{val}}</option>
+                {% endfor %}
+            </select>
+            <select class="custom-select" id="DArea">
+                <option value=0 selected>Area</option>
+                {% for key, val in DArea.items %}
+                <option value={{val}}>{{val}}</option>
+                {% endfor %}
+            </select>
+            <select class="custom-select" id="DSmoothness">
+                <option value=0 selected>Smoothness</option>
+                {% for key, val in DSmoothness.items %}
+                <option value={{val}}>{{val}}</option>
+                {% endfor %}
+            </select>
+            <select class="custom-select" id="DCompactness">
+                <option value=0 selected>Compactness</option>
+                {% for key, val in DCompactness.items %}
+                <option value={{val}}>{{val}}</option>
+                {% endfor %}
+            </select>
+            <select class="custom-select" id="DSymmetry">
+                <option value=0 selected>Symmetry</option>
+                {% for key, val in DSymmetry.items %}
+                <option value={{val}}>{{val}}</option>
+                {% endfor %}
+            </select>
+            <select class="custom-select" id="DFractalDimension">
+                <option value=0 selected>FractalDimension</option>
+                {% for key, val in DFractalDimension.items %}
+                <option value={{val}}>{{val}}</option>
+                {% endfor %}
+            </select>
+            <button type="button" class="btn btn-success" onclick="diagnosis()">Mostrar diagnóstico</button>
+        </div>
+    </div>
 </div>
+{% endblock %}
+
+{% block js %}
+<script>
+    function diagnosis() {
+        let DTexture = document.getElementById('DTexture').value;
+        let DArea = document.getElementById('DArea').value;
+        let DSmoothness = document.getElementById('DSmoothness').value;
+        let DCompactness = document.getElementById('DCompactness').value;
+        let DSymmetry = document.getElementById('DSymmetry').value;
+        let DFractalDimension = document.getElementById('DFractalDimension').value;
+        
+        let d = 12.025 - 0.19*DTexture - 0.01*DArea - 0.70*DSmoothness - 2.59*DCompactness - 1.02*DSymmetry - 0.25*DFractalDimension;
+        alert('El diagnostico es: '+d);
+    }
+</script>
 {% endblock %}
